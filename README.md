@@ -34,11 +34,11 @@
 
 # Push your image to remote and installing on any machine running docker
 
+![Screenshot 1](screenshots/push/Screenshot_20260911_184023.png)
 ![Screenshot 1](screenshots/push/Screenshot_20260911_183725.png)
 ![Screenshot 1](screenshots/push/Screenshot_20260911_183910.png)
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184003.png)
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184014.png)
-![Screenshot 1](screenshots/push/Screenshot_20260911_184023.png)
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184143.png)
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184154.png)
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184213.png)
