@@ -45,9 +45,6 @@
 ### authenticate with docker hub so that we can push changes
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184014.png)
 
-### push image to new repository
-![Screenshot 1](screenshots/push/Screenshot_20260911_184143.png)
-
 ### ssh onto a different linux server and create a new container from the remote image
 
 note that this can be performed on any server with access to docker hub
