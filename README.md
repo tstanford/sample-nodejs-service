@@ -20,15 +20,6 @@
 ![Screenshot 5](screenshots/Screenshot_20260911_173945.png)
 
 ### Cat command showing the created fil
-![Screenshot 1](screenshots/Screenshot_20260911_174347.png)
-![Screenshot 2](screenshots/Screenshot_20260911_174853.png)
-![Screenshot 3](screenshots/Screenshot_20260911_173921.png)
-![Screenshot 4](screenshots/Screenshot_20260911_174258.png)
-![Screenshot 5](screenshots/Screenshot_20260911_174245.png)
-![Screenshot 6](screenshots/Screenshot_20260911_173945.png)
-![Screenshot 7](screenshots/Screenshot_20260911_173704.png)
-![Screenshot 8](screenshots/Screenshot_20260911_173744.png)
-![Screenshot 9](screenshots/Screenshot_20260911_173627.png)e
 ![Screenshot 6](screenshots/Screenshot_20260911_174245.png)
 
 ### Build the image and register it add it to the local docker repo
@@ -39,3 +30,18 @@
 
 ### Lets create and run a docker container from the built image and also test with curl
 ![Screenshot 9](screenshots/Screenshot_20260911_174853.png)
+
+
+# Push your image to remote and installing on any machine running docker
+
+![Screenshot 1](screenshots/push/Screenshot_20260911_183725.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_183910.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_184003.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_184014.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_184023.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_184143.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_184154.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_184213.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_184228.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_190020.png)
+![Screenshot 1](screenshots/push/Screenshot_20260911_190110.png)
