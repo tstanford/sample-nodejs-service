@@ -2,10 +2,9 @@
 
 ## Screenshots
 
-### Branch new empty directory, lets create an app.js file
+### Brand new empty directory, lets create an app.js file
 
 ![Screenshot 1](screenshots/Screenshot_20260911_173627.png)
-
 
 ### Simple nodejs app using express framework
 ![Screenshot 2](screenshots/Screenshot_20260911_173704.png)
