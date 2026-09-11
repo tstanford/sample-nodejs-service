@@ -19,7 +19,7 @@
 ### Lets create a Dockerfile to containerise this application
 ![Screenshot 5](screenshots/Screenshot_20260911_173945.png)
 
-### Cat command showing the created fil
+### Cat command showing the created file
 ![Screenshot 6](screenshots/Screenshot_20260911_174245.png)
 
 ### Build the image and register it add it to the local docker repo
@@ -32,16 +32,27 @@
 ![Screenshot 9](screenshots/Screenshot_20260911_174853.png)
 
 
-# Push your image to remote and installing on any machine running docker
+# Push your image to remote and install on any machine running docker
 
+### Create a new docker hub repository
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184023.png)
+
+### clean old images that do not share the repository name
 ![Screenshot 1](screenshots/push/Screenshot_20260911_183725.png)
+
+### recreate image with new tag name that references the repository name
 ![Screenshot 1](screenshots/push/Screenshot_20260911_183910.png)
-![Screenshot 1](screenshots/push/Screenshot_20260911_184003.png)
+
+### authenticate with docker hub so that we can push changes
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184014.png)
+
+### push image to new repository
 ![Screenshot 1](screenshots/push/Screenshot_20260911_184143.png)
-![Screenshot 1](screenshots/push/Screenshot_20260911_184154.png)
-![Screenshot 1](screenshots/push/Screenshot_20260911_184213.png)
-![Screenshot 1](screenshots/push/Screenshot_20260911_184228.png)
+
+### ssh onto a different linux server and create a new container from the remote image
+
+note that this can be performed on any server with access to docker hub
 ![Screenshot 1](screenshots/push/Screenshot_20260911_190020.png)
+
+### Test in firefox showing that the new container on a different host works out of the box.
 ![Screenshot 1](screenshots/push/Screenshot_20260911_190110.png)
