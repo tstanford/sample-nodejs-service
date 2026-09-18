@@ -1,5 +1,17 @@
 # containerised node js rest service
 
+## Commands Run
+```
+docker build -t tjstanford/helloapi .
+docker push tjstanford/helloapi
+docker run -d --name helloapi -p 3000:3000 tjstanford/helloapi
+docker ps
+docker kill helloapi
+docker container prune
+docker image prune
+docker ps
+```
+
 ## Screenshots
 
 ### Brand new empty directory, lets create an app.js file
