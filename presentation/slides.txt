@@ -1,0 +1,491 @@
+# Docker and Kubernetes Session
+ 
+---
+ 
+# Introduction
+ 
+## Welcome
+ 
+Today I will cover:
+ 
+- What containers are
+- How to build container images
+- How to run containers
+- How to publish images
+- Introduction to Kubernetes
+- Deploying applications to Kubernetes
+- Live demonstrations
+ 
+## Housekeeping
+ 
+- Please ask short questions as we go.
+- Let's save longer discussions and deep dives until the end.
+ 
+---
+ 
+# What Is a Container?
+ 
+A container is a self-contained package that includes:
+ 
+- A deployed application
+- All required dependencies
+- Configuration required to run the application
+ 
+Benefits:
+ 
+- Consistent deployments
+- Portable across environments
+- Fast startup times
+- Efficient resource usage
+ 
+Containers typically run:
+ 
+- On servers
+- In data centres
+- In cloud environments
+ 
+---
+ 
+# Docker Architecture
+ 
+## Core Components
+ 
+1. Developer
+2. Dockerfile
+3. Docker Image
+4. Docker Container
+ 
+### Workflow
+ 
+```text
+Application Source
+↓
+Dockerfile
+↓
+docker build
+↓
+Image
+↓
+docker run
+↓
+Container
+```
+ 
+---
+ 
+# Creating a Container
+ 
+## Step 1: Obtain an Image
+ 
+Options:
+ 
+- Build your own image
+- Download a public image from a registry
+ 
+Examples:
+ 
+```bash
+docker pull nginx
+```
+ 
+```bash
+docker pull ubuntu
+```
+ 
+---
+ 
+# Creating Your Own Image
+ 
+## Preparation
+ 
+Before building:
+ 
+1. Gather application artifacts
+2. Create a dedicated build directory
+3. Document prerequisites
+4. Document installation steps
+5. Create a Dockerfile
+ 
+Example directory:
+ 
+```text
+project/
+├── app.jar
+├── config.yml
+└── Dockerfile
+```
+ 
+---
+ 
+# Dockerfile Example
+ 
+```dockerfile
+FROM eclipse-temurin:21
+ 
+WORKDIR /app
+ 
+COPY app.jar .
+ 
+EXPOSE 8080
+ 
+CMD ["java", "-jar", "app.jar"]
+```
+ 
+## What This Does
+ 
+- Downloads a Java runtime image
+- Sets the working directory
+- Copies the application
+- Exposes a port
+- Starts the application
+ 
+---
+ 
+# Build the Image
+ 
+## Command
+ 
+```bash
+docker build -t myapp .
+```
+ 
+## What Happens
+ 
+Docker:
+ 
+1. Reads the Dockerfile
+2. Builds image layers
+3. Creates a reusable image
+4. Stores it locally
+ 
+Result:
+ 
+```text
+myapp:latest
+```
+ 
+---
+ 
+# DEMO
+ 
+## Build an Image
+ 
+Demonstrate:
+ 
+```bash
+docker build -t myapp .
+```
+ 
+Verify:
+ 
+```bash
+docker images
+```
+ 
+---
+ 
+# Run a Container
+ 
+## Command
+ 
+```bash
+docker run -d \
+-p 80:3000 \
+--name myapp \
+myapp
+```
+ 
+## Explanation
+ 
+- `-d` = detached mode
+- `-p` = port mapping
+- `--name` = container name
+- `myapp` = image name
+ 
+---
+ 
+# Managing Containers
+ 
+## Useful Commands
+ 
+List containers:
+ 
+```bash
+docker ps
+```
+ 
+View logs:
+ 
+```bash
+docker logs myapp
+```
+ 
+Stop:
+ 
+```bash
+docker stop myapp
+```
+ 
+Remove:
+ 
+```bash
+docker rm myapp
+```
+ 
+---
+ 
+# Container Lifecycle
+ 
+```text
+Create
+↓
+Start
+↓
+Running
+↓
+Stop
+↓
+Remove
+```
+ 
+Containers can be restarted at any point.
+ 
+---
+ 
+# Publishing Container Images
+ 
+## Why Publish?
+ 
+To allow:
+ 
+- Other users
+- Other servers
+- Kubernetes clusters
+ 
+to pull and run your image.
+ 
+Common registries:
+ 
+- Docker Hub
+- GitHub Container Registry
+- Azure Container Registry
+- AWS ECR
+ 
+---
+ 
+# Publishing Example
+ 
+## Login
+ 
+```bash
+docker login
+```
+ 
+## Tag Image
+ 
+```bash
+docker tag myapp myuser/myapp:1.0
+```
+ 
+## Push Image
+ 
+```bash
+docker push myuser/myapp:1.0
+```
+ 
+---
+ 
+# DEMO
+ 
+## Push Image to Registry
+ 
+Demonstrate:
+ 
+```bash
+docker login
+docker push myuser/myapp:1.0
+```
+ 
+Verify image exists in registry.
+ 
+---
+ 
+# Kubernetes
+ 
+## What Is Kubernetes?
+ 
+Kubernetes is:
+ 
+- A container orchestration platform
+- A container runtime platform
+- The backbone of many cloud-native deployments
+ 
+Responsibilities:
+ 
+- Scheduling workloads
+- Scaling applications
+- Self-healing failures
+- Service discovery
+- Rolling updates
+ 
+---
+ 
+# Why Kubernetes?
+ 
+Without Kubernetes:
+ 
+- Manual deployments
+- Manual scaling
+- Single points of failure
+ 
+With Kubernetes:
+ 
+- Automated deployments
+- High availability
+- Automatic recovery
+- Horizontal scaling
+ 
+---
+ 
+# Kubernetes Components
+ 
+## Namespace
+ 
+Logical separation of resources.
+ 
+## Deployment
+ 
+Manages pods and replicas.
+ 
+## Service
+ 
+Provides network access to applications.
+ 
+---
+ 
+# Kubernetes Deployment Flow
+ 
+```text
+Build Image
+↓
+Push Image
+↓
+Registry
+↓
+Kubernetes Deployment
+↓
+Pods Created
+↓
+Service Exposes Application
+```
+ 
+---
+ 
+# Example Manifest
+ 
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: myapp
+spec:
+replicas: 2
+selector:
+matchLabels:
+app: myapp
+template:
+metadata:
+labels:
+app: myapp
+spec:
+containers:
+- name: myapp
+image: myuser/myapp:1.0
+```
+ 
+---
+ 
+# Example Service
+ 
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+name: myapp
+spec:
+selector:
+app: myapp
+ports:
+- port: 80
+targetPort: 3000
+type: LoadBalancer
+```
+ 
+---
+ 
+# Deploying to Kubernetes
+ 
+Apply manifests:
+ 
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+ 
+Check resources:
+ 
+```bash
+kubectl get pods
+kubectl get services
+```
+ 
+---
+ 
+# DEMO
+ 
+## Kubernetes Deployment
+ 
+Live demonstration:
+ 
+1. Apply Namespace
+2. Apply Deployment
+3. Apply Service
+4. Verify Pods
+5. Verify Service
+6. Access Application
+ 
+Commands:
+ 
+```bash
+kubectl apply -f .
+kubectl get all
+```
+ 
+---
+ 
+# Summary
+ 
+Today we covered:
+ 
+- Containers
+- Docker images
+- Dockerfiles
+- Running containers
+- Publishing images
+- Kubernetes basics
+- Deployments and services
+ 
+---
+ 
+# Questions & Discussion
+ 
+Topics for discussion:
+ 
+- Kubernetes networking
+- Ingress controllers
+- Persistent storage
+- CI/CD pipelines
+- Security
+- Monitoring and logging
+ 
+Thank you.
