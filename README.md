@@ -10,6 +10,7 @@ docker kill helloapi
 docker container prune
 docker image prune
 docker ps
+docker exec -it test sh
 ```
 
 ## Screenshots
